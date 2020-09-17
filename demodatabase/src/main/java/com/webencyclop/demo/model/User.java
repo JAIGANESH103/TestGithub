@@ -15,8 +15,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.validator.constraints.Length;
-
 @Entity
 @Table(name = "auth_user")
 public class User {
@@ -40,7 +38,6 @@ public class User {
 	private String email;
 
 	@NotNull(message="Password is compulsory")
-	@Length(min=5, message="Password should be at least 5 characters")
 	@Column(name = "password")
 	private String password;
 
