@@ -12,30 +12,37 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
 
 @Entity
 @Table(name = "auth_user")
 public class User {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "auth_user_id")
 	private int id;
 
+	@NotNull(message="First name is compulsory")
 	@Column(name = "first_name")
 	private String name;
 
+	@NotNull(message="Last name is compulsory")
 	@Column(name = "last_name")
 	private String lastName;
 
+	@NotNull(message="Email is compulsory")
+	@Email(message = "Email is invalid")
 	@Column(name = "email")
 	private String email;
 
+	@NotNull(message="Password is compulsory")
+	@Length(min=5, message="Password should be at least 5 characters")
 	@Column(name = "password")
 	private String password;
-
-	@Column(name = "mobile")
-	private String mobile;
 
 	@Column(name = "status")
 	private String status;
@@ -83,15 +90,7 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-	public String getMobile() {
-		return mobile;
-	}
-
-	public void setMobile(String mobile) {
-		this.mobile = mobile;
-	}
-
+	
 	public String getStatus() {
 		return status;
 	}
